@@ -1,12 +1,13 @@
 package model;
 public class Clients {
 	// atributes
-	private String Name;
-	private int Numregistration;
-	private int Date;
-	private int Type;
-	private double Kilos;
-	private double Totalvalue;
+	private String name;
+	private int numregistration;
+	private int date;
+	private int type;
+	private double kilos;
+	private double totalvalue;
+	private int numbers;
 	// constants
 	public static final double Normal=0;
 	public static final double Silver=0.015;
@@ -15,14 +16,14 @@ public class Clients {
 	//Relations
 	private Load[] freight;
 	//Methods
-	public Client(String name,int numregistration,int date,int type,double kilos,double totalvalue){
+	public Clients(String name,int numregistration,int date,int type,double kilos,double totalvalue){
 		this.name=name;
 		this.numregistration=numregistration;
 		this.date=date;
 		this.type=type;
 		this.kilos=kilos;
 		this.totalvalue=totalvalue;
-		freight=new Load [];
+		freight=new Load [numbers];
 	}
 	public String getName(){
 		return name;

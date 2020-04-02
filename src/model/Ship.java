@@ -1,23 +1,25 @@
 package model;
+import java.util.Arraylist;
 public class Ship {
 	// atributes
 	private String name;
 	private double totalweight;
+	ArrayList<Load> loads;
 	// constants
-	public static final int Maxweigth=28000;
-	public static final int Minweigth=12000;
-	public static final int Maxcapacity=2000;
+	public static final int MAXWEIGHT=28000;
+	public static final int MINWEIGHT=12000;
+	public static final int MAXCAPACITY=2000;
 	//Relations
-	private Load[] capacity;
+	private ArrayList<Load> loads;
 	//Methods
 	/**
 	*Ship builder
 	*@param name != null
 	*/
-	public Ship(String name,int totalweight){
+	public Ship(String name){
 		this.name=name;
-		this.totalweight=totalweight;
-		capacity=new Load [Maxcapacity];
+		this.totalweight=0;
+		capacity=new Arraylist<Load>();
 	}
 	public String getName(){
 		return name;
@@ -25,19 +27,13 @@ public class Ship {
 	public void setName(String name){
 		this.name=name;
 	}
-	public double getTOTALweigth(){
+	public double getTotalWeigth(){
 		return totalweight;
 	}
-	public void setTOTALweigth (){
+	public void setTotalWeigth (){
 		this.totalweight=totalweight;
 	}
-	public int calculatenumload(){
-		int num=0;
-		for(int s=0; s<Maxcapacity;s++){
-			if(capacity[s]!=null){
-				num++;
-			}
-		}
-		return num;
+	public Arraylist<Load> getLoads(){
+		return loads;
 	}
 }	

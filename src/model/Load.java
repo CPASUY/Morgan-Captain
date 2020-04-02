@@ -1,16 +1,21 @@
 package model;
 public class Load {
 	// atributes
-	private int Numboxes;
-	private double Weightboxes;
-	private String Theclient;
-	private int Type;
+	private int numboxes;
+	private double weightboxes;
+	private String type;
+	private double totalValue;
 	// constants
-	public static final int Dangerous=390000;
-	public static final int Perishable=250000;
-	public static final int Notperishable=80000;
+	public static final int DANGEROUS=390000;
+	public static final int PERISHABLE=250000;
+	public static final int NOTPERISHABLE=80000;
+	public static final String DANGEROUSNAME="dangerous";
+	public static final String PERISHABLENAME="perishable";
+	public static final String NOTPERISHABLENAME="not Perishable";
+	// relations
+	private Client client;
 	//Methods
-	public Load(int numboxes,double weightboxes,String theclient,int type){
+	public Load(int numboxes,double weightboxes,int type){
 		this.numboxes=numboxes;
 		this.weightboxes=weightboxes;
 		this.theclient=theclient;
@@ -28,7 +33,7 @@ public class Load {
 	public void setType(String type){
 		this.type=type;
 	}
-	public double getWeightboxes()){
+	public double getWeightboxes(){
 		return weightboxes;
 	}
 	public void setWeightboxes(double weightboxes){
@@ -37,7 +42,5 @@ public class Load {
 	public String getTheclient(){
 		return theclient;
 	} 
-	public void setTheclient(String theclient){
-		this.theclient=theclient;
-	}
+
 }	
