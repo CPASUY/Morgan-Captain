@@ -11,12 +11,16 @@ public class Client {
 	public static final double SILVER=0.015;
 	public static final double GOLD=0.03;
 	public static final double PLATINUM=0.05;
+	public static final String NORMALNAME="Normal";
+	public static final String SILVERNAME="Silver";
+	public static final String GOLDNAME="Gold";
+	public static final String PLATINUMNAME="Platinum";
 	//Methods
 	public Clients(String name,int numregistration,LocalDate date,String type){
 		this.name=name;
 		this.numregistration=numregistration;
 		this.date=date;
-		this.type=type;
+		this.type="normal";
 	}
 	public String getName(){
 		return name;

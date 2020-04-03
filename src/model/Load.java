@@ -4,7 +4,6 @@ public class Load {
 	private int numboxes;
 	private double weightboxes;
 	private String type;
-	private double totalValue;
 	// constants
 	public static final int DANGEROUS=390000;
 	public static final int PERISHABLE=250000;
@@ -15,11 +14,11 @@ public class Load {
 	// relations
 	private Client client;
 	//Methods
-	public Load(int numboxes,double weightboxes,int type){
+	public Load(int numboxes,double weightboxes,int type,objClient){
 		this.numboxes=numboxes;
 		this.weightboxes=weightboxes;
-		this.theclient=theclient;
 		this.type=type;
+		owner=objClient;
 	}
 	public int getNumboxes(){
 		return numboxes;
