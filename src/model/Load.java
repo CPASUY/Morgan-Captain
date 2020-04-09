@@ -1,45 +1,86 @@
 package model;
 public class Load {
-	// atributes
-	private int numboxes;
-	private double weightboxes;
-	private String type;
-	// constants
+	// Atributes
+	private double numBoxes;
+	private double weightBoxes;
+	private String typeLoad;
+	private Client theClient;
+	// Constants
 	public static final int DANGEROUS=390000;
 	public static final int PERISHABLE=250000;
 	public static final int NOTPERISHABLE=80000;
-	public static final String DANGEROUSNAME="dangerous";
-	public static final String PERISHABLENAME="perishable";
-	public static final String NOTPERISHABLENAME="not Perishable";
-	// relations
+	public static final String DANGEROUSNAME="DANGEROUS";
+	public static final String PERISHABLENAME="PERISHABLE";
+	public static final String NOTPERISHABLENAME="NOT PERISHABLE";
+	// Relations
 	private Client client;
 	//Methods
-	public Load(int numboxes,double weightboxes,int type,objClient){
-		this.numboxes=numboxes;
-		this.weightboxes=weightboxes;
-		this.type=type;
-		owner=objClient;
+	/**Load builder
+	*@param numBoxes != null
+	*@param weightBoxes != null
+	*@param typeLoad != null
+	*/
+	public Load(double numBoxes,double weightBoxes,String typeLoad,Client objClient){
+		this.numBoxes=numBoxes;
+		this.weightBoxes=weightBoxes;
+		this.typeLoad=typeLoad;
+		this.theClient=objClient;
 	}
-	public int getNumboxes(){
-		return numboxes;
+	/** getNumBoxes
+	     * Method to provide the number of boxes
+	     * @return double number of boxes
+	     */
+	public double getNumBoxes(){
+		return numBoxes;
 	}
-	public void setNumboxes(int numboxes){
-		this.numboxes=numboxes;
+	/** setNumBoxes
+	     * Method to changes the number of boxes
+	     * @param numBoxes -number of boxes of one load-!= null
+	     */
+	public void setNumBoxes(double numboxes){
+		this.numBoxes=numBoxes;
 	}
-	public String getType(){
-		return type;
+	/** getTypeLoad
+	     * Method to provide the type of load
+	     * @return String type of load
+	     */
+	public String getTypeLoad(){
+		return typeLoad;
 	} 
-	public void setType(String type){
-		this.type=type;
+	/** setTypeLoad
+	     * Method to changes type of load
+	     * @param typeLoad -type of load-!= null
+	     */
+	public void setTypeLoad(String typeLoad){
+		this.typeLoad=typeLoad;
 	}
-	public double getWeightboxes(){
-		return weightboxes;
+	/** getWeightBoxes
+	     * Method to provide the weight of boxes
+	     * @return double weight of boxes
+	     */
+	public double getWeightBoxes(){
+		return weightBoxes;
 	}
-	public void setWeightboxes(double weightboxes){
-		this.weightboxes=weightboxes;
+	/** setWeightBoxes
+	     * Method to changes weight of the boxes
+	     * @param weightBoxes -weight of the boxes-!= null
+	     */
+	public void setWeightBoxes(double weightBoxes){
+		this.weightBoxes=weightBoxes;
 	}
-	public String getTheclient(){
-		return theclient;
+	/** getTheClient
+	     * Method to provide client who belongs the load
+	     * @return Client client
+	     */
+	public Client getTheClient(){
+		return theClient;
 	} 
+	/** toString
+	     * Method to provide the load information of the client
+	     * @return String load information of the client
+	     */
+	public String toString(){
+		return "Number of boxes: "+numBoxes+"\n"+"Boxes weight: "+weightBoxes/1000+"\n"+"Type of Load: "+typeLoad;
+	}
 
 }	
