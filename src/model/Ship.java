@@ -76,8 +76,6 @@ public class Ship {
 						Load loads=new Load(numBoxes,weightBoxes,typeLoad,objClient);
 						this.loads.add(loads);
 						totalWeight=totalWeight+kilos;
-						double kilosBefore=objClient.getTotalKilos();
-						objClient.setTotalKilos(kilosBefore+kilos);
 						message="The load has been successfully shipped";
 				}
 			}					
@@ -96,8 +94,6 @@ public class Ship {
 					Load loads=new Load(numBoxes,weightBoxes,typeLoad,objClient);
 					this.loads.add(loads);
 					totalWeight=totalWeight+kilos;
-					double kilosBefore=objClient.getTotalKilos();
-					objClient.setTotalKilos(kilosBefore+kilos);
 				}
 			}
 			else if(typeLoad.equals(Load.NOTPERISHABLENAME)){
@@ -106,8 +102,6 @@ public class Ship {
 				Load loads=new Load(numBoxes,weightBoxes,typeLoad,objClient);
 				this.loads.add(loads);
 				totalWeight=totalWeight+kilos;
-				double kilosBefore=objClient.getTotalKilos();
-				objClient.setTotalKilos(kilosBefore+kilos);
 			}
 		return message;
 	}
@@ -129,12 +123,9 @@ public class Ship {
 	     * @return boolean true if can set sail, false if not.
 	     */
 	public boolean verifiedLeave(){
-		boolean verified;
-		if(MINLOAD>2 || totalWeight>12000){
+		boolean verified=false;
+		if(numLoads>MINLOAD|| totalWeight>12000){
 			verified=true;
-		}
-		else{
-			verified=false;
 		}
 		return verified;
 	}
@@ -163,7 +154,7 @@ public class Ship {
 		for(int s=0;s<loads.size();s++){
 			String num=loads.get(s).getTheClient().getNumregistration();
 			if(numRegistration.equals(num)){
-				message+=loads.get(s).toString();
+				message+=loads.get(s).toString()+"\n";;
 			}
 		}
 		return message;

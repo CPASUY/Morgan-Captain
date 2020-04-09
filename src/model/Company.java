@@ -76,53 +76,99 @@ public class Company {
 		String message="";
 		boolean find=false;
 		double rest=0;
-		double total=0;
 		boolean s=ship.verifiedWeight(weightBoxes,numBoxes);
 		double kilos=ship.convertion(weightBoxes,numBoxes);
 		Client objClient=searchClient(numRegistration);
+		double total=0;
 		if(objClient==null){
 			message="The client doesnt exist";
 		}
 		else if(s==true){
-			double totalBefore=objClient.getTotalValue();
 			message=ship.addLoad(numBoxes,typeLoad,weightBoxes,objClient);
-			if(typeLoad.equals(Load.DANGEROUSNAME)){
-				total=kilos*Load.DANGEROUS;
-			}
-			else if(typeLoad.equals(Load.PERISHABLENAME)){
-				total=kilos*Load.PERISHABLE;
-			}
-			else if(typeLoad.equals(Load.NOTPERISHABLE)){
-				total=kilos*Load.NOTPERISHABLE;
-			}
+			double valueBefore=objClient.getTotalValue();
+			double kilosBefore=objClient.getTotalKilos();
+			double beforeKilos=objClient.getTotalKilosFinal();
+			objClient.setTotalKilos(kilosBefore+kilos);
+			objClient.setTotalKilosFinal(beforeKilos+kilos);
 			if(objClient.getTypeClient().equals(Client.NORMALNAME)){
-				if(kilos>=35000 && kilos<55000){
-					objClient.setTypeClient(Client.SILVERNAME);
+				if(typeLoad.equals(Load.DANGEROUSNAME)){
+					total=kilos*Load.DANGEROUS;
 				}
+				else if(typeLoad.equals(Load.PERISHABLENAME)){
+					total=kilos*Load.PERISHABLE;
+				}
+				else if(typeLoad.equals(Load.NOTPERISHABLENAME)){
+					total=kilos*Load.NOTPERISHABLE;
+				}
+				double beforeValue=objClient.getTotalValueFinal();
+				objClient.setTotalValueFinal(beforeValue+total);
+				objClient.setTotalValue(valueBefore+total);
 			}
 			else if(objClient.getTypeClient().equals(Client.SILVERNAME)){
-				if(kilos>=55000 || total>=2000000 && total<5000000 ){
-					objClient.setTypeClient(Client.GOLDNAME);
+				if(typeLoad.equals(Load.DANGEROUSNAME)){
+					total=kilos*Load.DANGEROUS;
 				}
+				else if(typeLoad.equals(Load.PERISHABLENAME)){
+					total=kilos*Load.PERISHABLE;
+					rest=total*Client.SILVER;
+					total=total-rest;
+				}
+				else if(typeLoad.equals(Load.NOTPERISHABLENAME)){
+					total=kilos*Load.NOTPERISHABLE;
+				}
+				double beforeValue=objClient.getTotalValueFinal();
+				objClient.setTotalValueFinal(beforeValue+total);
+				objClient.setTotalValue(valueBefore+total);
 			}
 			else if(objClient.getTypeClient().equals(Client.GOLDNAME)){
-				if(total>=5000000 ){
-					objClient.setTypeClient(Client.PLATINUMNAME);
+				if(typeLoad.equals(Load.DANGEROUSNAME)){
+					total=kilos*Load.DANGEROUS;
 				}
-			}
-			if(objClient.getTypeClient().equals(Client.SILVERNAME) &&  typeLoad.equals(Load.PERISHABLENAME)){
-				rest=total*Client.SILVER;
-				total=total-rest;
-			}
-			else if(objClient.getTypeClient().equals(Client.GOLDNAME) &&  typeLoad.equals(Load.PERISHABLENAME) || typeLoad.equals(Load.NOTPERISHABLENAME) ){
-				rest=total*Client.GOLD;
-				total=total-rest;
+				else if(typeLoad.equals(Load.PERISHABLENAME)){
+					total=kilos*Load.PERISHABLE;
+					rest=total*Client.GOLD;
+					total=total-rest;
+				}
+				else if(typeLoad.equals(Load.NOTPERISHABLENAME)){
+					total=kilos*Load.NOTPERISHABLE;
+					rest=total*Client.GOLD;
+					total=total-rest;
+				}
+				double beforeValue=objClient.getTotalValueFinal();
+				objClient.setTotalValueFinal(beforeValue+total);
+				objClient.setTotalValue(valueBefore+total);
 			}
 			else if(objClient.getTypeClient().equals(Client.PLATINUMNAME)){
-				rest=total*Client.PLATINUM;
-				total=total-rest;
+				if(typeLoad.equals(Load.DANGEROUSNAME)){
+					total=kilos*Load.DANGEROUS;
+					rest=total*Client.PLATINUM;
+					total=total-rest;
+				}
+				else if(typeLoad.equals(Load.PERISHABLENAME)){
+					total=kilos*Load.PERISHABLE;
+					rest=total*Client.PLATINUM;
+					total=total-rest;
+				}
+				else if(typeLoad.equals(Load.NOTPERISHABLENAME)){
+					total=kilos*Load.NOTPERISHABLE;
+					rest=total*Client.PLATINUM;
+					total=total-rest;
+				}
+				double beforeValue=objClient.getTotalValueFinal();
+				objClient.setTotalValueFinal(beforeValue+total);
+				objClient.setTotalValue(valueBefore+total);
 			}
-			objClient.setTotalValue(totalBefore+total);
+			double totalFinal=objClient.getTotalValueFinal();
+			double kilosFinal=objClient.getTotalKilosFinal();
+			if(kilosFinal>=35000 && kilosFinal<55000){
+				objClient.setTypeClient(Client.SILVERNAME);
+			}
+			else if(kilosFinal>=55000 || totalFinal>=2000000 && totalFinal<5000000){
+				objClient.setTypeClient(Client.GOLDNAME);
+			}
+			else if(totalFinal>=5000000){
+				objClient.setTypeClient(Client.PLATINUMNAME);
+			}
 		}
 		else if(s==false){
 			message="The load could not be shipped";
@@ -140,7 +186,7 @@ public class Company {
 			message="The ship can set sail";
 		}
 		else{
-			message="The ship can set sail";
+			message="The ship can not set sail";
 		}
 		return message;
 	}
@@ -154,6 +200,12 @@ public class Company {
 		load=new ArrayList<Load>();
 		load=ship.getLoads();
 		ship.setTotalWeight(0);
+		for (int s=0;s<clients.length;s++){
+			if(clients[s]!=null){
+				clients[s].setTotalValue(0);
+				clients[s].setTotalKilos(0);
+			}
+		}
 		load.clear();
 		message="The ship has been completely unloaded";
 		return message;

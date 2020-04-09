@@ -7,7 +7,9 @@ public class Client {
 	private LocalDate date;
 	private String typeClient;
 	private double totalValue;
+	private double totalValueFinal;
 	private double totalKilos;
+	private double totalKilosFinal;
 	// Constants
 	public static final double NORMAL=0;
 	public static final double SILVER=0.015;
@@ -29,6 +31,8 @@ public class Client {
 		this.typeClient="Normal";
 		this.totalValue=0;
 		this.totalKilos=0;
+		this.totalKilosFinal=0;
+		this.totalValueFinal=0;
 	}
 /** getName
 	     * Method to provide the name of the client
@@ -93,12 +97,40 @@ public class Client {
 	public void setTotalKilos(double totalKilos){
 		this.totalKilos=totalKilos;
 	}
+	/** getTotalKilosFinal
+	     * Method to provide the total of kilos transportated of the client
+	     * @return double total kilos of all the trips
+	     */
+	public double getTotalKilosFinal(){
+		return totalKilosFinal;
+	}
+	/** setTotalKilosFinal
+	     * Method to changes the total of kilos trasnportated of the client of all the trips
+	     * @param totalKilosFinal -client total kilos-!= null
+	     */
+	public void setTotalKilosFinal(double totalKilosFinal){
+		this.totalKilosFinal=totalKilosFinal;
+	}
+	/** getTotalValueFinal
+	     * Method to provide the total of value to paid of the client of all the trips
+	     * @return double total value payment
+	     */
+	public double getTotalValueFinal(){
+		return totalValueFinal;
+	}
+	/** setTotalValueFinal
+	     * Method to changes the total value payment of the client of all the trips
+	     * @param totalKilosFinal -client total kilos-!= null
+	     */
+	public void setTotalValueFinal(double totalValueFinal){
+		this.totalValueFinal=totalValueFinal;
+	}
 	/** toString
 	     * Method to provide the information of the client
 	     * @return String information of the client
 	     */
 	public String toString(){
-		return "Name: "+name+"\n"+"Registry number: "+numRegistration+"\n"+"Type of Client: "+typeClient+"\n"+"Total kilos transported: "+totalKilos+"\n"+"Valued to paid: "+totalValue;
+		return "Name: "+name+"\n"+"Registry number: "+numRegistration+"\n"+"Type of Client: "+typeClient+"\n"+"Total kilos transported in this trip: "+totalKilos+"\n"+"Valued to paid in this trip: "+totalValue+"\n"+"Total Kilos transported: "+totalKilosFinal+"\n"+"Total value paid: "+totalValueFinal;
 	}
 
 }
