@@ -120,7 +120,7 @@ public class Client {
 	}
 	/** setTotalValueFinal
 	     * Method to changes the total value payment of the client of all the trips
-	     * @param totalKilosFinal -client total kilos-!= null
+	     * @param totalValueFinal -client total value-!= null
 	     */
 	public void setTotalValueFinal(double totalValueFinal){
 		this.totalValueFinal=totalValueFinal;
